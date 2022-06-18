@@ -18,5 +18,4 @@ DS_TELEFONE 	varchar(50),
 HR_CONSULTA		time,
 DT_CONSULTA		date,
 foreign key (id_login) references tb_login (id_login)
-
 );
