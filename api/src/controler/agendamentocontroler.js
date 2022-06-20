@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {inserirAgendamento, ConsultarTodos, removerAgendamento, ListarporNome, ListarporData, ListarporHorario,} from '../repository/agendamentoRepository.js'
+import {inserirAgendamento, ConsultarTodos, removerAgendamento, ListarporNome, } from '../repositorio/agendamentoRepositorio.js'
 
 const server = Router();
 
@@ -18,14 +18,6 @@ server.post('/agendamento', async (req, resp) => {
 
         if(!novoAgendamento.telefone){
             throw new Error('Telefone do paciente é obrigatório!');
-        }
-
-        if(!novoAgendamento.horário){
-            throw new Error('Horário da consulta é obrigatória!');
-        }
-
-        if(!novoAgendamento.usuário){
-            throw new Error('Usuário não logado!');
         }
 
         const agendamento =  await inserirAgendamento(novoAgendamento);
@@ -68,9 +60,7 @@ server.put('/agendamento/:id', async (req, resp) => {
             throw new Error('Telefone do paciente é obrigatório!');
         }
 
-        if(!agendamento.horário){
-            throw new Error('Horário da consulta é obrigatória!');
-        }
+       
 
         if(!agendamento.data){
             throw new Error('Data da consulta é obrigatória!');
@@ -126,23 +116,7 @@ server.get('/agendamento/buscar/nome', async(req, resp) => {
     }
 })
 //Listar por Horário
-server.get('/agendamento/buscar/horario', async(req, resp) => {
-    try{
-    const {hr} = req.query;
 
-    const resposta = await ListarporHorario(hr)
-    if(!resposta){
-        resp.status(404).send([])
-    }
-    else{
-    resp.send(resposta)
-}
-    } catch(err){
-        resp.send({
-            erro: err.message
-        })
-    }
-})
 //Deletar um agendamento
 server.delete('/agendamento/:id', async (req,resp) =>{
     try{

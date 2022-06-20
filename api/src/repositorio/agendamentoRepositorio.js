@@ -1,14 +1,14 @@
-import {con} from './conection.js'
+import {con} from './connection.js'
 
 
 export async function inserirAgendamento (agendamento){
     const comando = 
     `
-    insert into tb_agendamento (id_login, nm_paciente, ds_email, ds_telefone, hr_consulta, dt_consulta )
-    values (?, ?, ?, ?, ?, ?, ?);
+    insert into tb_agendamento (id_login, nm_paciente, ds_email, ds_telefone,  dt_consulta )
+    values (?, ?, ?, ?, ?);
     `
 
-    const [resposta] = await con.query(comando, [agendamento.usuário, agendamento.nome, agendamento.email,agendamento.telefone, agendamento.horário, agendamento.data]);
+    const [resposta] = await con.query(comando, [agendamento.usuário, agendamento.nome, agendamento.email,agendamento.telefone, agendamento.data]);
 
     agendamento.id = resposta.insertId;
 
@@ -24,7 +24,7 @@ export async function ConsultarTodos(){
     nm_paciente		 'nome',
     ds_email		 'email',
     ds_telefone	     'telefone',
-    hr_consulta	     'horário',
+   
     dt_consulta      'data'
 FROM tb_agendamento;
     `
@@ -40,7 +40,7 @@ export async function alterarAgendamento(id, agendamento){
    SET nm_paciente    = ?,
        ds_email       = ?,
        ds_telefone    = ?,
-       hr_consulta    = ?,
+       
        dt_consulta    = ?
  WHERE id_agendamento = ?;
     `
@@ -67,7 +67,7 @@ export async function ListarporNome(nome){
 	   nm_paciente		'nome',
        ds_email		    'email',
        ds_telefone	    'telefone',
-       hr_consulta	    'horário',
+       
        dt_consulta     	'data'	
   FROM tb_agendamento
   WHERE nm_paciente			like ?
@@ -85,7 +85,7 @@ export async function BuscarPorID (id){
     nm_paciente		 'nome',
     ds_email		 'email',
     ds_telefone	     'telefone',
-    hr_consulta	     'horário',
+    
     dt_consulta      'data'
 FROM tb_agendamento
 WHERE id_agendamento = ?
@@ -101,7 +101,7 @@ export async function BuscarDeHoje(){
     nm_paciente		 'nome',
     ds_email		 'email',
     ds_telefone	     'telefone',
-    hr_consulta	     'horário',
+    
     dt_consulta      'data'
 FROM tb_agendamento
 where dt_consulta = curdate();

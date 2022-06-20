@@ -24,7 +24,6 @@ SELECT id_login			'id',
 	   nm_paciente		'nome',
        ds_email		    'email',
        ds_telefone	    'telefone',
-       hr_consulta	    'horário',
        dt_consulta     	'data'
   FROM tb_agendamento;
  
@@ -40,7 +39,6 @@ SELECT id_login			'id',
 	   nm_paciente		'nome',
        ds_email		    'email',
        ds_telefone	    'telefone',
-       hr_consulta	    'horário',
        dt_consulta     	'data'
   FROM tb_agendamento
   WHERE nm_paciente			like '%a%';
