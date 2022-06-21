@@ -1,8 +1,6 @@
-USE Hunters;
-
 -- carga inicial usuário adm
 insert into tb_login (ds_gmail, ds_senha)
-	values ('dentalclinic@gmail.com','DoutorFernando');
+	values ('dental.com','1234');
     
 
 -- CSU01:: efetuar login
@@ -11,7 +9,7 @@ select id_login 		id,
 		ds_gmail			 gmail,
        ds_senha			senha
   from tb_login
- where ds_gmail 		= 'dentalclinic@gmail.com'
+ where ds_gmail 		= 'dental.com'
    and ds_senha		= '1234';
     
     -- CSU02:: cadastrar novo agendamento
